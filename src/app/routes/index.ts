@@ -1,8 +1,8 @@
 import { Router } from 'express'
-import blogRouter from './blog.model'
+import postRouter from './post.route'
 
 const APIRouter: Router = Router()
 
-APIRouter.use('/blogs', blogRouter)
+APIRouter.use('/blogs/posts', postRouter)
 
 export default APIRouter
