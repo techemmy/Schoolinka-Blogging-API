@@ -1,6 +1,6 @@
 import { DataTypes, Model, Sequelize } from 'sequelize'
 
-interface BlogAttributes {
+interface BlogPostAttributes {
   id?: number
   title: string
   description: string
@@ -10,7 +10,7 @@ interface BlogAttributes {
   updatedAt?: Date
 }
 
-class Blog extends Model<BlogAttributes> implements BlogAttributes {
+class BlogPost extends Model<BlogPostAttributes> implements BlogPostAttributes {
   id!: number
   title!: string
   description!: string
@@ -20,8 +20,8 @@ class Blog extends Model<BlogAttributes> implements BlogAttributes {
   updatedAt!: Date
 }
 
-function blogModel(sequelize: Sequelize) {
-  Blog.init(
+function BlogPostModel(sequelize: Sequelize) {
+  BlogPost.init(
     {
       id: {
         type: DataTypes.UUID,
@@ -43,7 +43,7 @@ function blogModel(sequelize: Sequelize) {
     { sequelize }
   )
 
-  return Blog
+  return BlogPost
 }
 
-export { blogModel, Blog, BlogAttributes }
+export { BlogPostModel, BlogPost, BlogPostAttributes }

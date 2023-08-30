@@ -1,10 +1,10 @@
 import { Request, Response } from 'express'
-import { Blog, BlogAttributes } from '../model/Blog'
+import { BlogPost, BlogPostAttributes } from '../model/Post'
 
 interface BlogResponse {
   status: number
   message: string
-  data?: BlogAttributes | BlogAttributes[]
+  data?: BlogPost | BlogPostAttributes[]
 }
 
 export async function createPost(
@@ -12,7 +12,7 @@ export async function createPost(
   res: Response
 ): Promise<Response<BlogResponse>> {
   const { title, description, body } = req.body
-  const blog = await Blog.create({ title, description, body })
+  const blog = await BlogPost.create({ title, description, body })
   return res.status(201).json({
     status: true,
     message: 'Blog Created Succesfully!',
@@ -26,7 +26,7 @@ export async function getPostById(
 ): Promise<Response<BlogResponse>> {
   const { blogId } = req.params
   console.log(blogId)
-  const blog = await Blog.findOne({
+  const blog = await BlogPost.findOne({
     where: {
       id: blogId
     }
