@@ -4,6 +4,7 @@ import APIRouter from './routes'
 
 const app: Express = express()
 
+app.use(express.json())
 app.use(morgan('common'))
 
 app.get('/', (req: Request, res: Response) => {
