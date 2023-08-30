@@ -1,6 +1,7 @@
 import { Sequelize } from 'sequelize'
 import config from '../config'
-import { Post, postModel } from './Post'
+import { postModel } from './Post'
+import { dbType } from '../types/dbType'
 
 const sequelize = new Sequelize(
   config.DATABASE,
@@ -22,9 +23,6 @@ const sequelize = new Sequelize(
   }
 )
 
-const db: {
-  sequelize: Sequelize
-  post: typeof Post
-} = { sequelize, post: postModel(sequelize) }
+const db: dbType = { sequelize, post: postModel(sequelize) }
 
 export default db

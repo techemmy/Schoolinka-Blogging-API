@@ -1,13 +1,6 @@
 import { NextFunction, Request, Response } from 'express'
-import { Post, PostAttributes } from '../model/Post'
-import { ValidationError } from 'express-validator'
-
-interface PostResponse {
-  status: number
-  message: string
-  data?: Post | PostAttributes[]
-  errors?: ValidationError | ValidationError[]
-}
+import { Post } from '../model/Post'
+import { PostResponse } from '../types/responseTypes'
 
 export async function createPost(
   req: Request,

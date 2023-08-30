@@ -1,14 +1,5 @@
 import { DataTypes, Model, Sequelize } from 'sequelize'
-
-interface PostAttributes {
-  id?: number
-  title: string
-  description: string
-  body: string
-  author_id?: number
-  createdAt?: Date
-  updatedAt?: Date
-}
+import { PostAttributes } from '../types/models/postTypes'
 
 class Post extends Model<PostAttributes> implements PostAttributes {
   id!: number
