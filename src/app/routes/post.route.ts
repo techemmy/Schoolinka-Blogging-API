@@ -1,6 +1,6 @@
 import { Router } from 'express'
 import * as postController from '../controllers/post.controller'
-import { body } from 'express-validator'
+import { body, param } from 'express-validator'
 
 const postRouter: Router = Router()
 
@@ -20,6 +20,10 @@ postRouter.post(
     .escape(),
   postController.createPost
 )
-postRouter.get('/:postId', postController.getPostById)
+postRouter.get(
+  '/:postId',
+  param('postId').isUUID().withMessage('Invalid post id'),
+  postController.getPostById
+)
 
 export default postRouter
