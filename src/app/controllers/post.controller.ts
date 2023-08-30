@@ -1,11 +1,6 @@
 import { NextFunction, Request, Response } from 'express'
 import { Post, PostAttributes } from '../model/Post'
-import {
-  FieldValidationError,
-  Result,
-  ValidationError,
-  validationResult
-} from 'express-validator'
+import { ValidationError } from 'express-validator'
 
 interface PostResponse {
   status: number
@@ -20,22 +15,6 @@ export async function createPost(
   next: NextFunction
 ): Promise<void | Response<PostResponse>> {
   try {
-    const validationResponse: Result = validationResult(req)
-    // if there are any validation errors
-    if (!validationResponse.isEmpty()) {
-      const errors: {
-        field: string
-        error: string
-      }[] = validationResponse.array().map((error: FieldValidationError) => {
-        return { field: error.path, error: error.msg }
-      })
-      return res.status(400).json({
-        status: false,
-        message: 'Data Validation Error(s)',
-        errors
-      })
-    }
-
     const { title, description, body } = req.body
     const post = await Post.create({ title, description, body })
     return res.status(201).json({
@@ -56,22 +35,6 @@ export async function getPostById(
 ): Promise<void | Response<PostResponse>> {
   try {
     const { postId } = req.params
-
-    const validationResponse: Result = validationResult(req)
-    // if there are any validation errors
-    if (!validationResponse.isEmpty()) {
-      const errors: {
-        field: string
-        error: string
-      }[] = validationResponse.array().map((error: FieldValidationError) => {
-        return { field: error.path, error: error.msg }
-      })
-      return res.status(400).json({
-        status: false,
-        message: 'Data Validation Error(s)',
-        errors
-      })
-    }
 
     const post = await Post.findOne({
       where: {

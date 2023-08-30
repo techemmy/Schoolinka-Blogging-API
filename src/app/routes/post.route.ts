@@ -1,6 +1,7 @@
 import { Router } from 'express'
 import * as postController from '../controllers/post.controller'
 import { body, param } from 'express-validator'
+import { validationErrorHandlerMiddleware } from '../middlewares'
 
 const postRouter: Router = Router()
 
@@ -18,11 +19,13 @@ postRouter.post(
     .isLength({ min: 3 })
     .withMessage('Enter a minimum of three characters')
     .escape(),
+  validationErrorHandlerMiddleware,
   postController.createPost
 )
 postRouter.get(
   '/:postId',
   param('postId').isUUID().withMessage('Invalid post id'),
+  validationErrorHandlerMiddleware,
   postController.getPostById
 )
 
