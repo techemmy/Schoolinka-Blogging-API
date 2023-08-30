@@ -19,3 +19,19 @@ export async function createPost(
     data: blog.toJSON()
   })
 }
+
+export async function getPostById(
+  req: Request,
+  res: Response
+): Promise<Response<BlogResponse>> {
+  const { blogId } = req.params
+  console.log(blogId)
+  const blog = await Blog.findOne({
+    where: {
+      id: blogId
+    }
+  })
+  return res
+    .status(200)
+    .json({ status: true, message: 'Get a specific post', data: blog })
+}
