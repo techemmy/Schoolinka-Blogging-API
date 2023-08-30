@@ -1,7 +1,10 @@
 import express, { Express, Request, Response } from 'express'
+import morgan from 'morgan'
 import APIRouter from './routes'
 
 const app: Express = express()
+
+app.use(morgan('common'))
 
 app.get('/', (req: Request, res: Response) => {
   res.send('Express + TypeScript configured!')

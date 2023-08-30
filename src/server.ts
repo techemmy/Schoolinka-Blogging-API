@@ -6,8 +6,9 @@ const port = config.APP_PORT
 
 ;(async () => {
   await db.sequelize.sync({ alter: true })
+  console.log(`🔥[Database]: Connected successfully!`)
 })()
 
 app.listen(port, () => {
-  console.log(`⚡️[server]: Server is running at http://localhost:${port}`)
+  console.log(`🚀[server]: Server is running at http://localhost:${port}`)
 })
