@@ -1,5 +1,5 @@
 import { Router } from 'express'
-import * as postController from '../controllers/post.controller'
+import { postController } from '../controllers'
 import { body, param } from 'express-validator'
 import { validationErrorHandlerMiddleware } from '../middlewares'
 
