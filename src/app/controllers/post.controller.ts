@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response } from 'express'
-import { Post } from '../model/Post'
+import { Post } from '../model/post.model'
 import { PostResponse } from '../types/responseTypes'
 
 export async function createPost(

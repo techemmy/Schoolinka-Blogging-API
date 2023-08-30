@@ -1,6 +1,6 @@
 import { Sequelize } from 'sequelize'
 import config from '../config'
-import { postModel } from './Post'
+import { postModel } from './post.model'
 import { dbType } from '../types/dbType'
 
 const sequelize = new Sequelize(

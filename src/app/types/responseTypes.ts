@@ -1,4 +1,4 @@
-import { Post, PostAttributes } from '../model/Post'
+import { Post, PostAttributes } from '../model/post.model'
 import { ValidationError } from 'express-validator'
 
 export interface PostResponse {

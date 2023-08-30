@@ -1,5 +1,5 @@
 import { Sequelize } from 'sequelize'
-import { Post } from '../model/Post'
+import { Post } from '../model/post.model'
 
 export interface dbType {
   sequelize: Sequelize
