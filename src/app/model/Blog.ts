@@ -1,7 +1,7 @@
 import { DataTypes, Model, Sequelize } from 'sequelize'
 
 interface BlogAttributes {
-  id: number
+  id?: number
   title: string
   description: string
   body: string
@@ -15,7 +15,7 @@ class Blog extends Model<BlogAttributes> implements BlogAttributes {
   title!: string
   description!: string
   body!: string
-  author_id?: number
+  author_id!: number
   createdAt!: Date
   updatedAt!: Date
 }
@@ -25,7 +25,8 @@ function blogModel(sequelize: Sequelize) {
     {
       id: {
         type: DataTypes.UUID,
-        defaultValue: DataTypes.UUIDV4
+        defaultValue: DataTypes.UUIDV4,
+        primaryKey: true
       },
       title: {
         type: DataTypes.STRING,
