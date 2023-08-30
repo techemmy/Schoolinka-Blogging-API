@@ -1,7 +1,7 @@
 import { Request, Response } from 'express'
 import { BlogPost, BlogPostAttributes } from '../model/Post'
 
-interface BlogResponse {
+interface BlogPostResponse {
   status: number
   message: string
   data?: BlogPost | BlogPostAttributes[]
@@ -10,7 +10,7 @@ interface BlogResponse {
 export async function createPost(
   req: Request,
   res: Response
-): Promise<Response<BlogResponse>> {
+): Promise<Response<BlogPostResponse>> {
   const { title, description, body } = req.body
   const blog = await BlogPost.create({ title, description, body })
   return res.status(201).json({
@@ -23,7 +23,7 @@ export async function createPost(
 export async function getPostById(
   req: Request,
   res: Response
-): Promise<Response<BlogResponse>> {
+): Promise<Response<BlogPostResponse>> {
   const { blogId } = req.params
   console.log(blogId)
   const blog = await BlogPost.findOne({
