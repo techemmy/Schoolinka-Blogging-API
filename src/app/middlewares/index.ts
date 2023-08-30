@@ -1,3 +1,3 @@
-import errorHandlerMiddleware from './errorHandler.middleware'
+import appErrorHandlerMiddleware from './appErrorHandler.middleware'
 
-export { errorHandlerMiddleware }
+export { appErrorHandlerMiddleware }

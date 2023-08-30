@@ -1,7 +1,7 @@
 import express, { Express, Request, Response } from 'express'
 import morgan from 'morgan'
 import APIRouter from './routes'
-import { errorHandlerMiddleware } from './middlewares'
+import { appErrorHandlerMiddleware } from './middlewares'
 
 const app: Express = express()
 
@@ -13,6 +13,6 @@ app.get('/', (req: Request, res: Response) => {
 })
 
 app.use('/api', APIRouter)
-app.use(errorHandlerMiddleware)
+app.use(appErrorHandlerMiddleware)
 
 export default app
