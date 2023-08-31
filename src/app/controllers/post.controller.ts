@@ -11,7 +11,14 @@ export async function getPosts(
   next: NextFunction
 ): Promise<void | Response<PostResponse>> {
   try {
-    const posts = await Post.findAll()
+    const { page, limit } = req.query
+    const pageNumber = page ? parseInt(page?.toString()) : 1
+    const resultsPerPage = limit ? parseInt(limit?.toString()) : 5
+
+    const posts = await Post.findAll({
+      limit: resultsPerPage,
+      offset: (pageNumber - 1) * resultsPerPage
+    })
     return res
       .status(200)
       .json({ status: true, message: 'All blog posts', data: posts })
