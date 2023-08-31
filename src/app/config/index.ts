@@ -2,6 +2,7 @@ import dotenv from 'dotenv'
 dotenv.config()
 
 interface ConfigType {
+  NODE_ENV: string
   APP_PORT: number
   DATABASE: string
   DB_USERNAME: string
@@ -15,6 +16,7 @@ interface ConfigType {
 }
 
 const config: ConfigType = {
+  NODE_ENV: process.env.NODE_ENV ?? 'development',
   APP_PORT: parseInt(process.env.APP_PORT ?? '3000'),
   DATABASE: process.env.DATABASE_NAME ?? '',
   DB_USERNAME: process.env.DATABASE_USERNAME ?? '',
