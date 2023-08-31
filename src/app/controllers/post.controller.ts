@@ -21,7 +21,7 @@ export async function getPosts(
 }
 
 export async function createPost(
-  req: Request,
+  req: RequestWithBody,
   res: Response,
   next: NextFunction
 ): Promise<void | Response<PostResponse>> {
