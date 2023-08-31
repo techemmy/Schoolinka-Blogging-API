@@ -144,7 +144,7 @@ export async function searchPost(
   next: NextFunction
 ): Promise<void | Response<PostResponse>> {
   try {
-    const searchWord = req.query.word?.toString().trim()
+    const { word: searchWord } = req.query
     const searchResults = await Post.findAll({
       where: {
         [Op.or]: {
