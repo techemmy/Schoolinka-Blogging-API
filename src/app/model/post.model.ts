@@ -31,7 +31,24 @@ function postModel(sequelize: Sequelize) {
         allowNull: false
       }
     },
-    { sequelize }
+    {
+      sequelize,
+      indexes: [
+        {
+          name: 'searchIndex',
+          using: 'BTREE',
+          fields: [
+            {
+              name: 'title',
+              collate: 'en_US',
+              order: 'ASC',
+              length: 5
+            },
+            'description'
+          ]
+        }
+      ]
+    }
   )
 
   return Post
