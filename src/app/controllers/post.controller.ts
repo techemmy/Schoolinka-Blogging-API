@@ -2,6 +2,22 @@ import { NextFunction, Request, Response } from 'express'
 import { Post } from '../model/post.model'
 import { PostResponse } from '../types/responseTypes'
 
+export async function getPosts(
+  req: Request,
+  res: Response,
+  next: NextFunction
+): Promise<void | Response<PostResponse>> {
+  try {
+    const posts = await Post.findAll()
+    return res
+      .status(200)
+      .json({ status: true, message: 'All blog posts', data: posts })
+  } catch (error) {
+    console.log(error)
+    next(error)
+  }
+}
+
 export async function createPost(
   req: Request,
   res: Response,

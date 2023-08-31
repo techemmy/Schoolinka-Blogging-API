@@ -5,6 +5,8 @@ import { validationErrorHandlerMiddleware } from '../middlewares'
 
 const postRouter: Router = Router()
 
+postRouter.get('/', postController.getPosts)
+
 postRouter.post(
   '/',
   body('title')
