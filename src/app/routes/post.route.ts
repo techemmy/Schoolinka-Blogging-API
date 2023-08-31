@@ -10,12 +10,14 @@ postRouter.get('/', postController.getPosts)
 postRouter.post(
   '/',
   body('title')
+    .trim()
     .notEmpty()
     .withMessage('Title cannot be empty')
     .isLength({ min: 3 })
     .withMessage('Enter a minimum of three characters')
     .escape(),
   body('body')
+    .trim()
     .notEmpty()
     .withMessage('Body cannot be empty')
     .isLength({ min: 3 })
