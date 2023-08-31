@@ -31,7 +31,7 @@ export async function createPost(
     return res.status(201).json({
       status: true,
       message: 'Post Created Succesfully!',
-      data: post.toJSON()
+      data: post
     })
   } catch (error) {
     console.log(error)
