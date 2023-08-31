@@ -9,7 +9,7 @@ app.use(express.json())
 app.use(morgan('common'))
 
 app.get('/', (req: Request, res: Response) => {
-  res.send('Express + TypeScript configured!')
+  res.send('Homepage. Check README.md on how to use the API')
 })
 
 app.use('/api', APIRouter)
