@@ -2,11 +2,11 @@ import { NextFunction, Request, Response } from 'express'
 import { matchedData } from 'express-validator'
 import { Post } from '../model/post.model'
 import { PostResponse } from '../types/responseTypes'
-import { RequestWithBody } from '../types/requestTypes'
+import { CustomRequest } from '../types/requestTypes'
 import { Op } from 'sequelize'
 
 export async function getPosts(
-  req: Request,
+  req: CustomRequest,
   res: Response,
   next: NextFunction
 ): Promise<void | Response<PostResponse>> {
@@ -29,7 +29,7 @@ export async function getPosts(
 }
 
 export async function createPost(
-  req: RequestWithBody,
+  req: CustomRequest,
   res: Response,
   next: NextFunction
 ): Promise<void | Response<PostResponse>> {
@@ -48,7 +48,7 @@ export async function createPost(
 }
 
 export async function getPostById(
-  req: Request,
+  req: CustomRequest,
   res: Response,
   next: NextFunction
 ): Promise<void | Response<PostResponse>> {
@@ -76,7 +76,7 @@ export async function getPostById(
 }
 
 export async function deletePostById(
-  req: Request,
+  req: CustomRequest,
   res: Response,
   next: NextFunction
 ): Promise<void | Response<PostResponse>> {
@@ -104,7 +104,7 @@ export async function deletePostById(
 }
 
 export async function editPostById(
-  req: RequestWithBody,
+  req: CustomRequest,
   res: Response,
   next: NextFunction
 ): Promise<void | Response<PostResponse>> {
@@ -146,7 +146,7 @@ export async function editPostById(
 }
 
 export async function searchPost(
-  req: Request,
+  req: CustomRequest,
   res: Response,
   next: NextFunction
 ): Promise<void | Response<PostResponse>> {
