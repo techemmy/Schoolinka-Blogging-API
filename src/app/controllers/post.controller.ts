@@ -151,8 +151,13 @@ export async function searchPost(
   next: NextFunction
 ): Promise<void | Response<PostResponse>> {
   try {
-    const { word: searchWord } = req.query
+    const { word: searchWord, page, limit } = req.query
+
+    const pageNumber = page ? parseInt(page?.toString()) : 1
+    const resultsPerPage = limit ? parseInt(limit?.toString()) : 5
     const searchResults = await Post.findAll({
+      limit: resultsPerPage,
+      offset: (pageNumber - 1) * resultsPerPage,
       where: {
         [Op.or]: {
           title: { [Op.iLike]: `%${searchWord}%` },
