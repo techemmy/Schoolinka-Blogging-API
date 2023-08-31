@@ -1,4 +1,4 @@
-import { NextFunction, Request, Response } from 'express'
+import { NextFunction, Response } from 'express'
 import { matchedData } from 'express-validator'
 import { Post } from '../model/post.model'
 import { PostResponse } from '../types/responseTypes'
