@@ -22,11 +22,19 @@ postRouter.post(
   validationErrorHandlerMiddleware,
   postController.createPost
 )
+
 postRouter.get(
   '/:postId',
   param('postId').isUUID().withMessage('Invalid post id'),
   validationErrorHandlerMiddleware,
   postController.getPostById
+)
+
+postRouter.delete(
+  '/:postId',
+  param('postId').isUUID().withMessage('Invalid post id'),
+  validationErrorHandlerMiddleware,
+  postController.deletePostById
 )
 
 export default postRouter

@@ -48,3 +48,31 @@ export async function getPostById(
     next(error)
   }
 }
+
+export async function deletePostById(
+  req: Request,
+  res: Response,
+  next: NextFunction
+): Promise<void | Response<PostResponse>> {
+  try {
+    const { postId } = req.params
+
+    const post = await Post.destroy({
+      where: {
+        id: postId
+      }
+    })
+
+    if (post === 0) {
+      return res
+        .status(404)
+        .json({ status: true, message: `Post doesn't exist` })
+    }
+    return res
+      .status(200)
+      .json({ status: true, message: 'Post deleted successfully!' })
+  } catch (error) {
+    console.log(error)
+    next(error)
+  }
+}
