@@ -1,6 +1,8 @@
 import { NextFunction, Request, Response } from 'express'
+import { matchedData } from 'express-validator'
 import { Post } from '../model/post.model'
 import { PostResponse } from '../types/responseTypes'
+import { RequestWithBody } from '../types/requestTypes'
 
 export async function getPosts(
   req: Request,
@@ -87,6 +89,48 @@ export async function deletePostById(
     return res
       .status(200)
       .json({ status: true, message: 'Post deleted successfully!' })
+  } catch (error) {
+    console.log(error)
+    next(error)
+  }
+}
+
+export async function editPostById(
+  req: RequestWithBody,
+  res: Response,
+  next: NextFunction
+): Promise<void | Response<PostResponse>> {
+  try {
+    const { postId } = req.params
+
+    const existingPost = await Post.findOne({
+      where: {
+        id: postId
+      }
+    })
+
+    if (!existingPost) {
+      return res
+        .status(404)
+        .json({ status: true, message: `Post doesn't exist` })
+    }
+
+    // We retrieve only the validated data that are specified in the validators registered on the route
+    // there, any extra property added to the req.body will also not be included
+    const validatedBodyData = matchedData(req, {
+      locations: ['body']
+    })
+
+    const post = await Post.update(
+      { ...validatedBodyData },
+      {
+        where: { id: postId }
+      }
+    )
+
+    return res
+      .status(200)
+      .json({ status: true, message: 'Post edited successfully!', data: post })
   } catch (error) {
     console.log(error)
     next(error)

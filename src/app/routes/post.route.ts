@@ -32,6 +32,30 @@ postRouter.get(
   postController.getPostById
 )
 
+postRouter.put(
+  '/:postId',
+  [
+    param('postId').isUUID().withMessage('Invalid post id'),
+    body('title')
+      .notEmpty()
+      .withMessage('Title cannot be empty')
+      .isLength({ min: 3 })
+      .withMessage('Enter a minimum of three characters')
+      .escape()
+      .optional(),
+    body('body')
+      .notEmpty()
+      .withMessage('Body cannot be empty')
+      .isLength({ min: 3 })
+      .withMessage('Enter a minimum of three characters')
+      .escape()
+      .optional(),
+    body('description').trim().optional()
+  ],
+  validationErrorHandlerMiddleware,
+  postController.editPostById
+)
+
 postRouter.delete(
   '/:postId',
   param('postId').isUUID().withMessage('Invalid post id'),
