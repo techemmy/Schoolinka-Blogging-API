@@ -121,7 +121,7 @@ export async function editPostById(
       locations: ['body']
     })
 
-    const post = await Post.update(
+    await Post.update(
       { ...validatedBodyData },
       {
         where: { id: postId }
@@ -130,7 +130,7 @@ export async function editPostById(
 
     return res
       .status(200)
-      .json({ status: true, message: 'Post edited successfully!', data: post })
+      .json({ status: true, message: 'Post edited successfully!' })
   } catch (error) {
     console.log(error)
     next(error)
