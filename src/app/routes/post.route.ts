@@ -29,6 +29,8 @@ postRouter.post(
   postController.createPost
 )
 
+postRouter.get('/search', postController.searchPost)
+
 postRouter.get(
   '/:postId',
   param('postId').isUUID().withMessage('Invalid post id'),

@@ -3,6 +3,7 @@ import { matchedData } from 'express-validator'
 import { Post } from '../model/post.model'
 import { PostResponse } from '../types/responseTypes'
 import { RequestWithBody } from '../types/requestTypes'
+import { Op } from 'sequelize'
 
 export async function getPosts(
   req: Request,
@@ -131,6 +132,33 @@ export async function editPostById(
     return res
       .status(200)
       .json({ status: true, message: 'Post edited successfully!' })
+  } catch (error) {
+    console.log(error)
+    next(error)
+  }
+}
+
+export async function searchPost(
+  req: Request,
+  res: Response,
+  next: NextFunction
+): Promise<void | Response<PostResponse>> {
+  try {
+    const searchWord = req.query.word?.toString().trim()
+    const searchResults = await Post.findAll({
+      where: {
+        [Op.or]: {
+          title: { [Op.iLike]: `%${searchWord}%` },
+          description: { [Op.iLike]: `%${searchWord}%` }
+        }
+      }
+    })
+
+    return res.status(200).json({
+      status: true,
+      message: 'Search results',
+      data: searchResults
+    })
   } catch (error) {
     console.log(error)
     next(error)
