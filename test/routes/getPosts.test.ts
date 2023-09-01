@@ -18,6 +18,7 @@ describe(`GET ${getPostsUrl}`, () => {
 
   test('should get no posts', async () => {
     const response = await request(app).get(getPostsUrl)
+    expect(response.headers['content-type']).toContain('application/json')
     expect(response.status).toBe(200)
     expect(response.body.status).toBeTruthy()
     expect(response.body.data).toBeTruthy()
@@ -26,6 +27,7 @@ describe(`GET ${getPostsUrl}`, () => {
 
   test('should get two posts', async () => {
     const response = await request(app).get(`${getPostsUrl}?page=1&limit=2`)
+    expect(response.headers['content-type']).toContain('application/json')
     expect(response.status).toBe(200)
     expect(response.body.status).toBeTruthy()
     expect(response.body.data).toBeTruthy()
