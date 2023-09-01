@@ -30,13 +30,17 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v2
         with:
-          node-version: 14
+          node-version: 18.16.0
 
       - name: Install dependencies
         run: npm install
 
       - name: Wait for PostgreSQL to be ready
-        run: dockerize -wait tcp://localhost:5432 -timeout 1m
+        run: |
+          until pg_isready -h localhost -p 5432 -d testdb; do
+            echo "Waiting for PostgreSQL to be ready..."
+            sleep 1
+          done
 
       - name: Run tests with PostgreSQL
         env:
