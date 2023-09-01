@@ -10,7 +10,7 @@
   <p align="center">
     A Blog API using Node.js + TS, with postgres for the DB ◊
     <p><a href="https://schoolinka-blog-api.onrender.com">The Live URL</a></p>
-    <p><a href="https://documenter.getpostman.com/view/11729879/2s9Y5csKe9">The Documentation | How to use the API</a></p>
+    <p><a href="https://documenter.getpostman.com/view/11729879/2s9Y5csKe9">The Documentation | Test the API</a></p>
     <br />
 
   </p>
