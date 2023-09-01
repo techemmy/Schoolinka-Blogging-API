@@ -8,8 +8,9 @@
 <h3 align="center">Schoolinka Blogging API</h3>
 
   <p align="center">
-    A Blog API using Node.js + TS, with postgres for the DB.
-◊
+    A Blog API using Node.js + TS, with postgres for the DB ◊
+    <p><a href="https://schoolinka-blog-api.onrender.com">The Live URL</a></p>
+    <p><a href="https://documenter.getpostman.com/view/11729879/2s9Y5csKe9">The Documentation | How to use the API</a></p>
     <br />
 
   </p>
@@ -122,6 +123,8 @@ Make sure you the following installed
    ```
 
 _To try the API or see examples, please refer to the [Postman Documentation](https://documenter.getpostman.com/view/11729879/2s9Y5csKe9)_
+
+_And the live url [here](https://schoolinka-blog-api.onrender.com])_
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
