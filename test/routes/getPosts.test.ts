@@ -5,17 +5,17 @@ import postFixtures from '../fixtures/posts.json'
 
 const getPostsUrl = '/api/blogs/posts'
 
+beforeAll(async () => {
+  await db.sequelize.sync({ alter: true })
+  await db.post.bulkCreate(postFixtures)
+})
+
+afterAll(async () => {
+  await db.post.destroy({ truncate: true })
+  await db.sequelize.close()
+})
+
 describe(`GET ${getPostsUrl}`, () => {
-  beforeAll(async () => {
-    await db.sequelize.sync({ alter: true })
-    await db.post.bulkCreate(postFixtures)
-  })
-
-  afterAll(async () => {
-    await db.post.destroy({ truncate: true })
-    await db.sequelize.close()
-  })
-
   test('should get no posts', async () => {
     const response = await request(app).get(getPostsUrl)
     expect(response.headers['content-type']).toContain('application/json')

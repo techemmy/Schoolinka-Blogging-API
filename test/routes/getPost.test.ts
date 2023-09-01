@@ -5,19 +5,19 @@ import postFixtures from '../fixtures/posts.json'
 import { PostAttributes } from '../../src/app/model/post.model'
 
 const getPostsUrl = '/api/blogs/posts'
+let createdPost: PostAttributes
+
+beforeAll(async () => {
+  await db.sequelize.sync({ alter: true })
+  createdPost = await db.post.create(postFixtures[0])
+})
+
+afterAll(async () => {
+  await db.post.destroy({ truncate: true })
+  await db.sequelize.close()
+})
 
 describe(`GET ${getPostsUrl}/`, () => {
-  let createdPost: PostAttributes
-  beforeAll(async () => {
-    await db.sequelize.sync({ alter: true })
-    createdPost = await db.post.create(postFixtures[0])
-  })
-
-  afterAll(async () => {
-    await db.post.destroy({ truncate: true })
-    await db.sequelize.close()
-  })
-
   test('should get a post by Id', async () => {
     const response = await request(app).get(`${getPostsUrl}/${createdPost.id}`)
     expect(response.headers['content-type']).toContain('application/json')

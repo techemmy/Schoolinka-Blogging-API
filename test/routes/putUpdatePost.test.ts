@@ -6,17 +6,17 @@ import { PostAttributes } from '../../src/app/model/post.model'
 
 const updatePostUrl = '/api/blogs/posts'
 
+beforeAll(async () => {
+  await db.sequelize.sync({ alter: true })
+})
+
+afterAll(async () => {
+  await db.post.destroy({ truncate: true })
+  await db.sequelize.close()
+})
+
 describe(`PUT ${updatePostUrl}/`, () => {
   let createdPost: PostAttributes
-  beforeAll(async () => {
-    await db.sequelize.sync({ alter: true })
-    createdPost = await db.post.create(postFixtures[0])
-  })
-
-  afterAll(async () => {
-    await db.post.destroy({ truncate: true })
-    await db.sequelize.close()
-  })
 
   beforeEach(async () => {
     createdPost = await db.post.create(postFixtures[0])

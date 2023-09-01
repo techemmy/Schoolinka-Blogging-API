@@ -5,16 +5,16 @@ import postFixtures from '../fixtures/posts.json'
 
 const createPostUrl = '/api/blogs/posts'
 
+beforeAll(async () => {
+  await db.sequelize.sync({ alter: true })
+})
+
+afterAll(async () => {
+  await db.post.destroy({ truncate: true })
+  await db.sequelize.close()
+})
+
 describe(`POST ${createPostUrl}`, () => {
-  beforeAll(async () => {
-    await db.sequelize.sync({ alter: true })
-  })
-
-  afterAll(async () => {
-    await db.post.destroy({ truncate: true })
-    await db.sequelize.close()
-  })
-
   test('should create a post', async () => {
     const response = await request(app)
       .post(createPostUrl)

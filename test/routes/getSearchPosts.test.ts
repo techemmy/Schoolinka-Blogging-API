@@ -5,17 +5,17 @@ import postFixtures from '../fixtures/posts.json'
 
 const searchPostsUrl = '/api/blogs/posts/search'
 
+beforeAll(async () => {
+  await db.sequelize.sync({ alter: true })
+  await db.post.bulkCreate(postFixtures)
+})
+
+afterAll(async () => {
+  await db.post.destroy({ truncate: true })
+  await db.sequelize.close()
+})
+
 describe(`GET ${searchPostsUrl}`, () => {
-  beforeAll(async () => {
-    await db.sequelize.sync({ alter: true })
-    await db.post.bulkCreate(postFixtures)
-  })
-
-  afterAll(async () => {
-    await db.post.destroy({ truncate: true })
-    await db.sequelize.close()
-  })
-
   test('should search for all posts matching the search word', async () => {
     const searchWord = 'a'
     const response = await request(app).get(
