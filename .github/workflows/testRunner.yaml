@@ -44,5 +44,5 @@ jobs:
 
       - name: Run tests with PostgreSQL
         env:
-          DATABASE_URL: postgres://postgres:password@localhost:5432/testdb
+          TEST_DB_URL: postgres://postgres:password@localhost:5432/testdb
         run: npm test
