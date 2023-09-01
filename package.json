@@ -8,7 +8,8 @@
     "dev": "TZ='UTC' nodemon src/server.ts",
     "lint": "eslint src/**/*.ts",
     "format": "eslint src/**/*.ts --fix",
-    "test": "jest --runInBand"
+    "test": "jest --runInBand",
+    "test:watch": "jest --runInBand --watch"
   },
   "keywords": [],
   "author": "",
