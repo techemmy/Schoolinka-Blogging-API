@@ -32,8 +32,8 @@ describe(`GET ${getPostsUrl}/`, () => {
   test('should return 404 if post is not found', async () => {
     const deletedPostId = (await db.post.create(postFixtures.at(-1))).id
     await db.post.destroy({ where: { id: deletedPostId } })
+
     const response = await request(app).get(`${getPostsUrl}/${deletedPostId}`)
-    console.log(response.body)
     expect(response.headers['content-type']).toContain('application/json')
     expect(response.status).toBe(404)
     expect(response.body.status).toBeFalsy()
