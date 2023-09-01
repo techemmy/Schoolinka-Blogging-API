@@ -3,7 +3,6 @@ export interface PostAttributes {
   title: string
   description: string
   body: string
-  author_id?: number
   createdAt?: Date
   updatedAt?: Date
 }
