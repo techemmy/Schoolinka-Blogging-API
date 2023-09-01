@@ -5,7 +5,7 @@ import postFixtures from '../fixtures/posts.json'
 
 const createPostUrl = '/api/blogs/posts'
 
-describe(`GET ${createPostUrl}`, () => {
+describe(`POST ${createPostUrl}`, () => {
   beforeAll(async () => {
     await db.sequelize.sync({ alter: true })
   })
