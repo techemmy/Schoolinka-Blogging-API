@@ -64,7 +64,7 @@ export async function getPostById(
     if (!post) {
       return res
         .status(404)
-        .json({ status: true, message: `Post doesn't exist` })
+        .json({ status: false, message: `Post doesn't exist` })
     }
     return res
       .status(200)
@@ -92,7 +92,7 @@ export async function deletePostById(
     if (post === 0) {
       return res
         .status(404)
-        .json({ status: true, message: `Post doesn't exist` })
+        .json({ status: false, message: `Post doesn't exist` })
     }
     return res
       .status(200)
@@ -120,7 +120,7 @@ export async function editPostById(
     if (!existingPost) {
       return res
         .status(404)
-        .json({ status: true, message: `Post doesn't exist` })
+        .json({ status: false, message: `Post doesn't exist` })
     }
 
     // We retrieve only the validated data that are specified in the validators registered on the route
