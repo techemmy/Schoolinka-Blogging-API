@@ -8,7 +8,6 @@ const createPostUrl = '/api/blogs/posts'
 describe(`GET ${createPostUrl}`, () => {
   beforeAll(async () => {
     await db.sequelize.sync({ alter: true })
-    await db.post.bulkCreate(postFixtures)
   })
 
   afterAll(async () => {
